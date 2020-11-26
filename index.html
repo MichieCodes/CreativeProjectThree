@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Project 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/vue-agile@1.1.3/dist/VueAgile.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Macbeth Tweets</h1>
+        <template>
+            <agile>
+                <div class="Slide" v-for="Tweet in Tweets">
+                    <div class="TweetSlide">
+                        <div class="Avatar" :style="'background-image: url(' + Characters[Tweet.user].image + ');'"></div>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="InfoBar">
+                                <span class="name">{{Characters[Tweet.user].name}}</span>
+                                <span class="username">{{Characters[Tweet.user].username}}</span>
+                            </div>
+                            <div class="Tweet" v-html="Tweet.tweet"></div>
+                        </div>
+                    </div>
+                </div>
+            </agile>
+        </template>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-agile@1.1.3/dist/VueAgile.umd.min.js"></script>
+
+    <script>
+        var Characters = {
+            "lady-macbeth": {
+                name: "Lady Macbeth",
+                username: "@LadyMacbeth",
+                image: "./images/lady-macbeth.jpg"
+            }, 
+            "three-witches": {
+                name: "The Three Witches",
+                username: "@TheThreeWitches",
+                image: "./images/three-witches.jpg"
+            }, 
+            "macbeth": {
+                name: "Macbeth",
+                username: "@Macbeth",
+                image: "./images/macbeth.jpg"
+            }, 
+            "banquo": {
+                name: "Banquo",
+                username: "@Banquo",
+                image: "./images/banquo.jpg"
+            }, 
+        };
+
+        var Tweets = [
+            {
+                user: "macbeth",
+                tweet: "If chance will have me king, why, chance may crown me"
+            },
+            {
+                user: "lady-macbeth",
+                tweet: "What's done cannot be undone"
+            },
+            {
+                user: "three-witches",
+                tweet: "Fair is foul, and foul is fair"
+            },
+            {
+                user: "macbeth",
+                tweet: "False face must hide what the false heart doth"
+            },
+            {
+                user: "lady-macbeth",
+                tweet: "Out, damned spot! out, I say"
+            },
+            {
+                user: "banquo",
+                tweet: "<b>@Macbeth</b> But 'tis strange: and oftentimes, to win us to our harm, the instruments of darkness tell us truths, win us with honest trifles, to betray's in deepest consequence"
+            },
+            {
+                user: "lady-macbeth",
+                tweet: "All the perfumes of Arabia will not sweeten this little hand"
+            },
+            {
+                user: "macbeth",
+                tweet: "Out, out, brief candle! Life's but a walking shadow, a poor player That struts and frets his hour upon the stage And then is heard no more: it is a tale Told by an idiot, full of sound and fury, Signifying nothing"
+            },
+        ];
+
+        Vue.use(VueAgile);
+
+        var app = new Vue({
+            el: '#app',
+            components: {
+                agile: VueAgile,
+            },
+            data: {
+                Characters: Characters,
+                Tweets: Tweets
+            }
+        });
+    </script>
+</body>
+</html>
